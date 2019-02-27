@@ -1,0 +1,198 @@
+1. GENERAL INFORMATION
+
+The iPinYou Global RTB(Real-Time Bidding) Bidding Algorithm Competition is organized by iPinYou (http://www.ipinyou.com) from April 1st, 2013 to December 31st, 2013. 
+
+The competition has been divided into three seasons. For each season, a training dataset is released to the competition participants, the testing dataset is reserved  by iPinYou. The complete testing dataset is randomly divided into two parts: one part is the leaderboard testing dataset to score and rank the participating teams on the leaderboard, and the other part is reserved for the final offline evaluation. The participant's last offline submission is evaluated by the reserved testing dataset to get a team's offline final score.  
+
+We now release all the training datasets and leaderboard testing datasets.  The reserved testing datasets are withheld by iPinYou. 
+If you have special purpose using them, please contact us through dsp-competition@ipinyou.com.
+
+2.  DATA DESCRIPTION AND FILE LIST
+
+The files in the dataset are plain text, *.txt.bz2 or *.tar.bz2 files. With bunzip2 and tar Linux or Mac command, they can be uncompressed easily into plain text:  
+           bunzip2 *.txt.bz2
+           tar xvjf *.tar.bz2
+
+The iPinYou Bidding Algorithm Competition training dataset includes a set of processed iPinYou DSP bidding, impression, click, and conversion logs. 
+
+For each season, we have run five advertiser campaigns to get these logs with a fixed relatively high-price bidding strategy  (with exceptions on some campaigns in the third season), which is for the purpose of getting enough impressions and their paying prices and is different from that of our internal live bidding algorithms.
+  
+The log format of the training data for the first season:  http://contest.ipinyou.com/v1/data.shtml. 
+
+The log format of the training data for the second and third season:  http://contest.ipinyou.com/data.shtml
+
+The main difference between the first and second/third season is the second and third season data contains the user tags column while the first season data does not.
+ 
+The log file contains tab separated values. Since the User-Agent may contain blank, commas or '#' inside, to read these files in R correctly, 
+sep parameter of R has to be specified as '\t', and interpretation of comments has to be turned off by setting comment.char=''.
+
+The testing data is formatted in the following way:
+          ImpLogColumns	RelateClicks(C) IfHasConv(V)
+
+One impression may be related 0, 1 or more clicks (C >= 0), Multiple conversions will be counted only once, so V can only be 0 or 1.
+The testing data are generally collected after the training data (for the first and second season data), but not always so. The testing dataset for the third season is generated from the normal training data.  
+
+The complete dataset package includes the following files: 
+
+README                               # This file
+files.md5                            # Md5 
+city.cn.txt                          # City file, with names in Chinese
+city.en.txt                          # City file, with names in English
+region.cn.txt                        # Region file, with names in Chinese
+region.en.txt                        # Region file, with names in English
+user.profile.tags.cn.txt             # User profile tags id to name mapping file with names in Chinese
+user.profile.tags.en.txt             # User profile tags id to name mapping file with names in English
+algo.submission.demo.tar.bz2         # Algorithm submission demo files in Java, Python and R (for the second and third season)
+
+#  Training data for first season
+training1st/bid.20130311.txt.bz2   # Bidding log
+training1st/bid.20130312.txt.bz2
+training1st/bid.20130313.txt.bz2
+training1st/bid.20130314.txt.bz2
+training1st/bid.20130315.txt.bz2
+training1st/bid.20130316.txt.bz2
+training1st/bid.20130317.txt.bz2
+training1st/clk.20130311.txt.bz2   # Click log
+training1st/clk.20130312.txt.bz2
+training1st/clk.20130313.txt.bz2
+training1st/clk.20130314.txt.bz2
+training1st/clk.20130315.txt.bz2
+training1st/clk.20130316.txt.bz2
+training1st/clk.20130317.txt.bz2
+training1st/conv.20130311.txt.bz2  # Conversion log
+training1st/conv.20130312.txt.bz2
+training1st/conv.20130313.txt.bz2
+training1st/conv.20130314.txt.bz2
+training1st/conv.20130315.txt.bz2
+training1st/conv.20130316.txt.bz2
+training1st/conv.20130317.txt.bz2
+training1st/imp.20130311.txt.bz2   # Impression log
+training1st/imp.20130312.txt.bz2
+training1st/imp.20130313.txt.bz2
+training1st/imp.20130314.txt.bz2
+training1st/imp.20130315.txt.bz2
+training1st/imp.20130316.txt.bz2
+training1st/imp.20130317.txt.bz2
+
+# Training data for the second season
+training2nd/bid.20130606.txt.bz2
+training2nd/bid.20130607.txt.bz2
+training2nd/bid.20130608.txt.bz2
+training2nd/bid.20130609.txt.bz2
+training2nd/bid.20130610.txt.bz2
+training2nd/bid.20130611.txt.bz2
+training2nd/bid.20130612.txt.bz2
+training2nd/clk.20130606.txt.bz2
+training2nd/clk.20130607.txt.bz2
+training2nd/clk.20130608.txt.bz2
+training2nd/clk.20130609.txt.bz2
+training2nd/clk.20130610.txt.bz2
+training2nd/clk.20130611.txt.bz2
+training2nd/clk.20130612.txt.bz2
+training2nd/conv.20130606.txt.bz2
+training2nd/conv.20130607.txt.bz2
+training2nd/conv.20130608.txt.bz2
+training2nd/conv.20130609.txt.bz2
+training2nd/conv.20130610.txt.bz2
+training2nd/conv.20130611.txt.bz2
+training2nd/conv.20130612.txt.bz2
+training2nd/imp.20130606.txt.bz2
+training2nd/imp.20130607.txt.bz2
+training2nd/imp.20130608.txt.bz2
+training2nd/imp.20130609.txt.bz2
+training2nd/imp.20130610.txt.bz2
+training2nd/imp.20130611.txt.bz2
+training2nd/imp.20130612.txt.bz2
+
+# Training data for the third season
+training3rd/bid.20131019.txt.bz2
+training3rd/bid.20131020.txt.bz2
+training3rd/bid.20131021.txt.bz2
+training3rd/bid.20131022.txt.bz2
+training3rd/bid.20131023.txt.bz2
+training3rd/bid.20131024.txt.bz2
+training3rd/bid.20131025.txt.bz2
+training3rd/bid.20131026.txt.bz2
+training3rd/bid.20131027.txt.bz2
+training3rd/bid.20131028.txt.bz2
+training3rd/clk.20131019.txt.bz2
+training3rd/clk.20131020.txt.bz2
+training3rd/clk.20131021.txt.bz2
+training3rd/clk.20131022.txt.bz2
+training3rd/clk.20131023.txt.bz2
+training3rd/clk.20131024.txt.bz2
+training3rd/clk.20131025.txt.bz2
+training3rd/clk.20131026.txt.bz2
+training3rd/clk.20131027.txt.bz2
+training3rd/conv.20131019.txt.bz2  # Conversion log. Note that there are only five days of data that have conversions 
+training3rd/conv.20131020.txt.bz2
+training3rd/conv.20131021.txt.bz2
+training3rd/conv.20131022.txt.bz2
+training3rd/conv.20131023.txt.bz2
+training3rd/imp.20131019.txt.bz2
+training3rd/imp.20131020.txt.bz2
+training3rd/imp.20131021.txt.bz2
+training3rd/imp.20131022.txt.bz2
+training3rd/imp.20131024.txt.bz2
+training3rd/imp.20131025.txt.bz2
+training3rd/imp.20131026.txt.bz2
+training3rd/imp.20131027.txt.bz2
+
+# Leaderboard testing data  
+testing1st/leaderboard.test.data.20130318_20.txt.bz2  # First season testing
+testing2nd/leaderboard.test.data.20130613_15.txt.bz2  # Second season testing
+testing3rd/leaderboard.test.data.20131021_28.txt.bz2  # Third season testing 
+
+3. DSP BIDDING OPTIMIZATION TASK
+
+The participating teams optimize the following task.
+      
+   Maximize the number of clicks + N * the number of conversions, 
+   Subject to the fixed ad budget.
+
+In order to get clicks and/or conversions, the DSP bidding server has to first bid on ad exchange to get ad impression first. The DSP bidding server pays ad exchange as long as the ad of the advertiser whom the DSP bid for shows up on the publisher website, i.e. pay by impression. However, one ad impression does not guarantee a click by the user. The user clicks the ad only when (s)he is interested in the ad. Actually it is common to see 0.01% ~ 0.2% CTR (Clickthrough Rate) in display advertising. By the same logic, one ad click does not guarantee a conversion by the user.
+
+Usually the DSP has a fixed ad budget for each advertiser campaign. The goal of the advertising campaign is to get as many clicks and/or conversions as possible subject to the budget constraints. The scoring function is
+
+Score = the number of clicks + N * the number of conversions
+
+Where N is a number between 1~100. N shows the relative importance of conversion vs. click. Each season may have different N value. 
+For the first season, N = 20; 
+
+For the second season, N is different for different advertisers. For advertiserID=3358, N=2; for advertiserID=3476, N=10.
+
+For the third season, N = 1. The conversion for the third season is actually defined as the landing of advertiser landing page.  
+
+4. ALGORITHM EVALUATION AND SUBMISSION
+
+The iPinYou Global RTB Bidding Competition is an ONLINE algorithm competition. Here ONLINE does not mean we have both offline and online evaluation stage, but that during the offline evaluation stage, we try to imitate the online bidding process as much as possible. It means that the bidding request comes one by one, when each bidding request comes, the algorithm has to decide whether to bid and the bidding price if it decides to bid. It also means that it makes a difference whether or not the total test data is seen beforehand, even when the click or conversion labels are withheld. For this reason, during the competition, the testing dataset is always withheld by iPinYou to do offline evaluation to make the offline evaluation as similar with online evaluation as possible. 
+
+From the second season on, we support offline evaluation submission in Java, Python or R language.
+Other constraints in running the algorithm are:
+
+* Memory usage can NOT go beyond 512M
+* Method getBidPrice() running time limit is 5ms
+
+The submission guide for the first season dataset:  http://contest.ipinyou.com/v1/submission.shtml
+For the second and third season dataset:            http://contest.ipinyou.com/v2/submission.shtml
+
+5. BENCHMARK SCORES
+
+Please check the following links for the baseline scores for the three seasons for benchmark purpose: 
+http://contest.ipinyou.com/session-three-offline-leaderboard.html
+http://contest.ipinyou.com/session-two-offline-leaderboard.html
+http://contest.ipinyou.com/session-one-offline-leaderboard.html
+
+6. MORE INFORMATION AND QUESTIONS
+
+For more information about the competition, please check the contest website http://contest.ipinyou.com. 
+
+We especially suggest reading the following: 
+http://contest.ipinyou.com/faq.shtml
+http://contest.ipinyou.com/manual.shtml
+
+If you have any questions about the dataset, feel free to email us: dsp-competition@ipinyou.com
+
+
+
+

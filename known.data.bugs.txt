@@ -1,0 +1,5 @@
+Here we list all the known data bugs that have been found:
+
+* In http://contest.ipinyou.com/v1/data.shtml, "Log type is 1 (impression), 2(click), or 3(conversion). " But in conversion files in season 1, all the log types are 2. This is a data bug, it should be 3 instead of 2.
+  (Reported by Dr. Weinan Zhang of UCL_CA)
+
